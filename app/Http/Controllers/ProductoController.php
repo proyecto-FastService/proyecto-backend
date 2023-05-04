@@ -8,4 +8,3 @@ class ProductoController extends Controller
 {
     //
 }
-a

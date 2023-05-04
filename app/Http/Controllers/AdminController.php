@@ -14,7 +14,7 @@ class AdminController extends Controller
     {
         return redirect('home');
     }
-a
+
     public function desactivarProducto()
     {
         //
