@@ -30,4 +30,9 @@ class Producto extends Model
     public function mesas(){
         return $this->belongsTo(Mesa::class);
     }
+
+    public static function obtenerTodosProductosEnStock(){
+        $productos = Producto::where('existencias', '>', 0)->get();
+        return $productos;
+    }
 }
