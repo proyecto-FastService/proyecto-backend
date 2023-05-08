@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -15,18 +16,62 @@ class AdminController extends Controller
         return redirect('home');
     }
 
-    public function desactivarProducto()
+    public function desactivarProducto(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        $producto = Producto::find($request->id);
+        $producto->existencias = 0;
+        $producto->save();
+
+        return redirect("");
     }
 
-    public function añadirProducto()
+    public function añadirProducto(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'existencias' => 'required|numeric',
+            'alergenos' => 'required',
+            'precios' => 'required|numeric',
+            'descripcion' => 'required',
+            'ingredientes' => 'required',
+        ]);
+
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->existencias = $request->existencias;
+        $producto->alergenos = $request->alergenos;
+        $producto->precio = $request->precios;
+        $producto->descripcion = $request->descripcion;
+        $producto->ingredientes = $request->ingredientes;
+        $producto->save();
+
+        return redirect("");
     }
 
-    public function editarProducto()
+    public function editarProducto(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|numeric',
+            'nombre' => 'required',
+            'existencias' => 'required|numeric',
+            'alergenos' => 'required',
+            'precios' => 'required|numeric',
+            'descripcion' => 'required',
+        ]);
+
+        $producto = Producto::find($request->id);
+        $producto->nombre = $request->nombre;
+        $producto->existencias = $request->existencias;
+        $producto->alergenos = $request->alergenos;
+        $producto->precio = $request->precios;
+        $producto->descripcion = $request->descripcion;
+        $producto->ingredientes = $request->ingredientes;
+        $producto->save();
+
+        return redirect("");
     }
 }
