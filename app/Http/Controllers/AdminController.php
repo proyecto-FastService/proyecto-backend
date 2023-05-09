@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mesa;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -71,6 +72,26 @@ class AdminController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->ingredientes = $request->ingredientes;
         $producto->save();
+
+        return redirect("");
+    }
+
+    public function eliminarMesa(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|numeric',
+        ]);
+
+        $mesa = Mesa::find($request->id);
+        $mesa->delete();
+
+        return redirect("");
+    }
+
+    public function añadirMesa()
+    {
+        $mesa = new Mesa();
+        $mesa->save();
 
         return redirect("");
     }
