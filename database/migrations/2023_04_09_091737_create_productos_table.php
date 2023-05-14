@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('precio');
             $table->string('descripcion');
             $table->string('ingredientes');
+            $table->string('imagen');
             $table->timestamps();
         });
     }
