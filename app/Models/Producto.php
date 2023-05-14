@@ -21,6 +21,7 @@ class Producto extends Model
         'precios',
         'descripcion',
         'ingredientes',
+        'imagen',
     ];
 
     public function mesa(){
