@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('existencias');
             $table->string('alergenos');
-            $table->integer('precio');
+            $table->double('precio');
             $table->string('descripcion');
             $table->string('ingredientes');
             $table->string('imagen');

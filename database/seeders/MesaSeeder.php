@@ -11,6 +11,7 @@ class MesaSeeder extends Seeder
     public function run()
     {
         Mesa::create([
+            'id' => 0,
             'role' => 'admin',
         ]);
 
