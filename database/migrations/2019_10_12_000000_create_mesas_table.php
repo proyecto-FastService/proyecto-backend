@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
             $table->string('role')->nullable();
+            $table->boolean('ocupada')->default(false);
+            $table->string('codigo', 255)->nullable();
             $table->timestamps();
         });
     }

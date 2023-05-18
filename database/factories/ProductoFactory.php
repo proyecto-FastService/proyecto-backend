@@ -20,7 +20,7 @@ class ProductoFactory extends Factory
             'nombre' => $this->faker->word,
             'existencias' => $this->faker->numberBetween(0, 100),
             'alergenos' => $this->faker->word,
-            'precio' => $this->faker->numberBetween(1, 100),
+            'precio' => $this->faker->randomFloat(2, 0, 100),
             'descripcion' => $this->faker->sentence,
             'ingredientes' => $this->faker->sentence,
             'imagen' => $this->faker->imageUrl(),
