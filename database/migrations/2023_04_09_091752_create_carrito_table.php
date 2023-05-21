@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('carrito', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_mesa');
+            $table->string('token_mesa');
             $table->unsignedBigInteger('id_producto');
-            $table->foreign("id_mesa")->references("id")->on("mesas")->onDelete("cascade");
+            $table->boolean('pagado')->default(false);
             $table->foreign("id_producto")->references("id")->on("productos")->onDelete("cascade");
             $table->timestamps();
         });
