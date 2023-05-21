@@ -48,9 +48,28 @@ class CarritoController extends Controller
             ->where('pagado', 0)
             ->get();
 
-        // Retornar los productos no pagados en formato JSON
-        return response()->json(['productosNoPagados' => $productosNoPagados]);
+        // Arreglo para almacenar los detalles de los productos
+        $productos = [];
+
+        foreach ($productosNoPagados as $producto) {
+            // Obtener el producto correspondiente al id del producto no pagado
+            $productoDetalle = Producto::find($producto->id_producto);
+
+            if ($productoDetalle) {
+                // Agregar los detalles del producto al arreglo
+                $productos[] = [
+                    'id' => $productoDetalle->id,
+                    'nombre' => $productoDetalle->nombre,
+                    'precio' => $productoDetalle->precio,
+                    // Agrega aquí los demás campos que necesites del producto
+                ];
+            }
+        }
+
+        // Retornar el arreglo de productos en formato JSON
+        return response()->json(['productosNoPagados' => $productos]);
     }
+
 
     public function pagarCarrito($token)
     {
