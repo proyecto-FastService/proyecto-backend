@@ -81,17 +81,18 @@ class CarritoController extends Controller
             // El administrador comprueba los productos que tiene pedidos una mesa
 
             // Obtener los productos pedidos de la mesa cliente
-            $productosPedidos = Carrito::where('token_mesa', $mesaCliente->token)->get();
+            $productosPedidos = Carrito::where('token_mesa', $mesaCliente->codigo)->get();
 
             // Arreglo para almacenar los detalles de los productos
             $productos = [];
 
             foreach ($productosPedidos as $producto) {
+                $productoDetalle = Producto::find($producto->id_producto);
                 // Agregar los detalles de cada producto al arreglo
                 $productos[] = [
-                    'id' => $producto->id,
-                    'nombre' => $producto->nombre,
-                    'precio' => $producto->precio,
+                    'id' => $productoDetalle->id,
+                    'nombre' => $productoDetalle->nombre,
+                    'precio' => $productoDetalle->precio,
                 ];
             }
 
