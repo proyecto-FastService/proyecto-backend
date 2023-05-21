@@ -73,7 +73,7 @@ class MesaController extends Controller
         // Verificar si el token corresponde al registro de la mesa con ID 0
         $mesa = Mesa::find(0);
 
-        if ($mesa && $mesa->token === $token) {
+        if ($mesa->codigo === $token) {
             // Obtener todas las mesas donde la columna 'role' no sea 'Admin'
             $mesas = Mesa::where('role', '!=', 'Admin')->get();
 

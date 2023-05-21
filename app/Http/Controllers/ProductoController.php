@@ -28,7 +28,7 @@ class ProductoController extends Controller
     {
         $mesa = Mesa::find(0);
 
-        if ($mesa && $mesa->token === $token) {
+        if ($mesa->codigo === $token) {
             // Validar los datos recibidos desde React si es necesario
             // ...
 
@@ -63,7 +63,7 @@ class ProductoController extends Controller
         // Verificar si el token corresponde al registro de la mesa con ID 0
         $mesa = Mesa::find(0);
 
-        if ($mesa && $mesa->token === $token) {
+        if ($mesa->codigo === $token) {
             // Recoger todos los productos
             $productos = Producto::all();
 
