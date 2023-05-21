@@ -24,3 +24,6 @@ Route::get('/cargar-productos/{id}/{token?}', [MesaController::class, 'cargarPro
 
 Route::post('/pedirListaProductosPorId/{token}', [CarritoController::class, 'pedirListaProductosPorId']);
 
+Route::get('/pagarCarrito/{token}', [CarritoController::class, 'pagarCarrito']);
+
+Route::get('/devolverProductosPedidosNoPagados/{token}', [CarritoController::class, 'devolverProductosPedidosNoPagados']);

@@ -32,6 +32,17 @@ class CarritoController extends Controller
             return response()->json(['error' => 'Datos de pedido no válidos'], 400);
         }
     }
+
+    public function devolverProductosPedidosNoPagados($token){
+        // Obtener los productos no pagados para el token de mesa específico
+        $productosNoPagados = Carrito::where('token_mesa', $token)
+        ->where('pagado', 0)
+        ->get();
+
+        // Retornar los productos no pagados en formato JSON
+        return response()->json(['productosNoPagados' => $productosNoPagados]);
+    }
+
     public function pagarCarrito($token)
     {
         // Recogemos todos los registros que haya en la base de datos para ese token,
