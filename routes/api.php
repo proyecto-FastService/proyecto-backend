@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +33,7 @@ Route::get('/admObtenerTodasMesas/{token}', [MesaController::class, 'admObtenerT
 
 Route::get('/admObtenerToken/{id}/{token?}', [MesaController::class, 'admObtenerToken']);
 
-Route::get('/admObtenerListadoProducto/{token}', [ProductoController::class, 'admObtenerListadoProducto']);
+
 
 Route::post('/admLiberarMesa/{token}/{idMesa}', [MesaController::class, 'admLiberarMesa']);
 
@@ -40,5 +41,8 @@ Route::post('/admReservarMesa/{token}/{idMesa}', [MesaController::class, 'admRes
 
 Route::post('/admComprobarProductosPorMesa/{token}/{idMesa}', [CarritoController::class, 'admComprobarProductosPorMesa']);
 
+// PRODUCTO
 
+Route::get('/admObtenerListadoProducto/{token}', [ProductoController::class, 'admObtenerListadoProducto']);
 
+Route::get('/admOcultarProducto/{token}/{idProducto}', [ProductoController::class, 'admOcultarProducto']);

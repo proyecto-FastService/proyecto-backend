@@ -19,9 +19,28 @@ class ProductoController extends Controller
         // el administrador añade un producto entero por lo que nos deben pasar todos los detalles del producto, crear el objeto y meterlo en la base de datos
     }
 
-    public function admOcultarProducto($idProducto)
+    public function admOcultarProducto($token, $idProducto)
     {
         // el administrador pone el stock a 0 de un producto para que no se muestre a los cliente
+
+        $mesa = Mesa::find(0);
+
+        if ($mesa->codigo === $token) {
+            if ($mesa->codigo === $token) {
+                $producto = Producto::find($idProducto);
+        
+                if ($producto) {
+                    $producto->existencias = 0;
+                    $producto->save();
+        
+                    return response()->json(['message' => 'Producto ocultado correctamente']);
+                }
+        
+                return response()->json(['error' => 'Producto no encontrado'], 404);
+            }
+        }
+
+        return response()->json(['error' => 'Token no válido'], 400);
     }
 
     public function admEditarProducto(Request $request, $id, $token)
