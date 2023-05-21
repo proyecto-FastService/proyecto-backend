@@ -28,3 +28,5 @@ Route::get('/pagarCarrito/{token}', [CarritoController::class, 'pagarCarrito']);
 
 Route::get('/devolverProductosPedidosNoPagados/{token}', [CarritoController::class, 'devolverProductosPedidosNoPagados']);
 
+Route::get('/admObtenerTodasMesas/{token}', [MesaController::class, 'admObtenerTodasMesas']);
+

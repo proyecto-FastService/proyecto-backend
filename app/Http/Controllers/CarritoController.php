@@ -71,7 +71,7 @@ class CarritoController extends Controller
     }
 
 
-    public function admComprobarProductosPorMesa($idMesa)
+    public function admComprobarProductosPorMesa($token)
     {
         // El administrador comprueba los productos que tiene pedidos una mesa
         // y la cantidad de dinero que es
