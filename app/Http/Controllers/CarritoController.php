@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\MesaController;
+use App\Models\Mesa;
 class CarritoController extends Controller
 {
     public function pedirListaProductosPorId($token, Request $request)
@@ -33,11 +34,12 @@ class CarritoController extends Controller
         }
     }
 
-    public function devolverProductosPedidosNoPagados($token){
+    public function devolverProductosPedidosNoPagados($token)
+    {
         // Obtener los productos no pagados para el token de mesa específico
         $productosNoPagados = Carrito::where('token_mesa', $token)
-        ->where('pagado', 0)
-        ->get();
+            ->where('pagado', 0)
+            ->get();
 
         // Retornar los productos no pagados en formato JSON
         return response()->json(['productosNoPagados' => $productosNoPagados]);
@@ -49,9 +51,19 @@ class CarritoController extends Controller
         // y ponemos pagado a 1 para todos los productos que haya
         Carrito::where('token', $token)->update(['pagado' => 1]);
 
+        // Actualizar la mesa asociada al token
+        $mesa = Mesa::where('token', $token)->first();
+        if ($mesa) {
+            $mesa->update([
+                'ocupada' => 0,
+                'token' => null
+            ]);
+        }
+
         // Retornar una respuesta adecuada
         return response()->json(['message' => 'Carrito pagado correctamente']);
     }
+
 
     public function admComprobarProductosPorMesa($idMesa)
     {
