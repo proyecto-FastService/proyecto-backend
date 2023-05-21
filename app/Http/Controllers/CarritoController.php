@@ -6,6 +6,7 @@ use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MesaController;
 use App\Models\Mesa;
+use App\Models\Producto;
 class CarritoController extends Controller
 {
     public function pedirListaProductosPorId($token, Request $request)
@@ -23,6 +24,11 @@ class CarritoController extends Controller
                     'token_mesa' => $mesa,
                     'id_producto' => $idProducto
                 ]);
+
+                // Restar 1 al stock del producto
+                $producto = Producto::find($idProducto);
+                $producto->existencias -= 1;
+                $producto->save();
             }
 
             // Resto del código...
