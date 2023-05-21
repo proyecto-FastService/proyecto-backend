@@ -14,7 +14,7 @@ class CarritoController extends Controller
 
         if ($jsonData && isset($jsonData['cartItems']) && is_array($jsonData['cartItems'])) {
             $cartItems = $jsonData['cartItems'];
-            $mesa = $jsonData['mesa'];
+            $mesa = $jsonData['token'];
 
             foreach ($cartItems as $cartItem) {
                 $idProducto = $cartItem['id'];
@@ -49,14 +49,14 @@ class CarritoController extends Controller
     {
         // Recogemos todos los registros que haya en la base de datos para ese token,
         // y ponemos pagado a 1 para todos los productos que haya
-        Carrito::where('token', $token)->update(['pagado' => 1]);
+        Carrito::where('token_mesa', $token)->update(['pagado' => 1]);
 
         // Actualizar la mesa asociada al token
-        $mesa = Mesa::where('token', $token)->first();
+        $mesa = Mesa::where('codigo', $token)->first();
         if ($mesa) {
             $mesa->update([
                 'ocupada' => 0,
-                'token' => null
+                'codigo' => null
             ]);
         }
 

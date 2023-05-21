@@ -27,3 +27,4 @@ Route::post('/pedirListaProductosPorId/{token}', [CarritoController::class, 'ped
 Route::get('/pagarCarrito/{token}', [CarritoController::class, 'pagarCarrito']);
 
 Route::get('/devolverProductosPedidosNoPagados/{token}', [CarritoController::class, 'devolverProductosPedidosNoPagados']);
+

@@ -13,6 +13,17 @@ class Mesa extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    use HasFactory;
+
+    protected $table = "mesas";
+
+    protected $primaryKey = "id";
+
+    protected $fillable = [
+        'ocupada',
+        'codigo',
+    ];
+
     public function producto(){
         return $this->hasMany(Producto::class);
     }
