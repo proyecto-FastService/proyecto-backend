@@ -58,14 +58,45 @@ class MesaController extends Controller
         }
     }
 
-    public function admLiberarMesa($idMesa)
+    public function admLiberarMesa($token, $idMesa)
     {
-        // aqui el administrador mediante el idMesa libera la mesa poniendo a null el token y ocupada a 0
+        $mesa2 = Mesa::find(0);
+
+        if ($mesa2->codigo === $token) {
+            $mesa = Mesa::find($idMesa);
+
+            if ($mesa) {
+                $mesa->ocupada = 0;
+                $mesa->codigo = null;
+                $mesa->save();
+
+                return response()->json(['message' => 'Mesa liberada exitosamente']);
+            }
+
+            return response()->json(['error' => 'Mesa no encontrada'], 404);
+        }
+        return response()->json(['error' => 'Token no válido'], 400);
     }
 
-    public function admReservarMesa($idMesa)
+
+    public function admReservarMesa($token, $idMesa)
     {
-        // el administrador pone como ocupada una mesa para despues liberarla cuando venga el cliente
+        $mesa2 = Mesa::find(0);
+
+        if ($mesa2->codigo === $token) {
+            $mesa = Mesa::find($idMesa);
+
+            if ($mesa) {
+                $mesa->ocupada = 1;
+                $mesa->codigo = "reservada";
+                $mesa->save();
+
+                return response()->json(['message' => 'Mesa reservada exitosamente']);
+            }
+
+            return response()->json(['error' => 'Mesa no encontrada'], 404);
+        }
+        return response()->json(['error' => 'Token no válido'], 400);
     }
 
     public function admObtenerTodasMesas($token)

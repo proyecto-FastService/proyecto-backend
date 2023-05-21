@@ -32,6 +32,12 @@ Route::get('/admObtenerTodasMesas/{token}', [MesaController::class, 'admObtenerT
 
 Route::get('/admObtenerToken/{id}/{token?}', [MesaController::class, 'admObtenerToken']);
 
+Route::get('/admObtenerListadoProducto/{token}', [ProductoController::class, 'admObtenerListadoProducto']);
+
+Route::post('/admLiberarMesa/{token}/{idMesa}', [MesaController::class, 'admLiberarMesa']);
+
+Route::post('/admReservarMesa/{token}/{idMesa}', [MesaController::class, 'admReservarMesa']);
+
 Route::post('/admComprobarProductosPorMesa/{token}/{idMesa}', [CarritoController::class, 'admComprobarProductosPorMesa']);
 
 
