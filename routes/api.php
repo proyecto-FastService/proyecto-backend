@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Route::get('/mesa/prueba', 'MesaController@prueba');
-Route::get('/prueba2/{id}/{token?}', [MesaController::class, 'cargarProductosConStock']);
+Route::get('/cargar-productos/{id}/{token?}', [MesaController::class, 'cargarProductosConStock']);
+
+Route::get('/pedirListaProductos/{token}/{arrayProductosIds}', [CarritoController::class, 'pedirListaProductosPorId']);

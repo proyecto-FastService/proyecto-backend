@@ -14,25 +14,10 @@ use Illuminate\Support\Str;
 
 class MesaController extends Controller
 {
-    public function hacerPedido()
-    {
-        //
-    }
-
-    public function pagarPedido()
-    {
-        //
-    }
-
-    public function llamarCamarero()
-    {
-        //
-    }
-
     public function cargarProductosConStock($id, $token = null){
         if (Mesa::comprobarMesaOcupada($id)){
             Mesa::ocuparMesaPorId($id); 
-            $codigo = Str::random(20);
+            $codigo = $id.Str::random(100);
             Mesa::codificarMesa($id, $codigo);
             // Creamos una instancia del controlador "ProductoController"
             $productoController = new ProductoController;
@@ -48,7 +33,20 @@ class MesaController extends Controller
             return $productosEnStock;
         }
         else {
-            return "Esta mesa esta ocupada por alguien, TUNANTE";
+            return false;
         }
     }
+
+    public function admLiberarMesa($idMesa){
+        // aqui el administrador mediante el idMesa libera la mesa poniendo a null el token y ocupada a 0
+    }
+
+    public function admReservarMesa($idMesa){
+        // el administrador pone como ocupada una mesa para despues liberarla cuando venga el cliente
+    }
+
+    public function llamarCamarero($idMesa){
+        // recogemos el id de la mesa y le mandamos a la mesa camarero una llamada
+    }
+
 }
