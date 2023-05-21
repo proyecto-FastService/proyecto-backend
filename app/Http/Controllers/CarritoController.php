@@ -19,7 +19,7 @@ class CarritoController extends Controller
                 $idProducto = $cartItem['id'];
 
                 Carrito::create([
-                    'id_mesa' => $mesa,
+                    'token_mesa' => $mesa,
                     'id_producto' => $idProducto
                 ]);
             }
