@@ -46,3 +46,5 @@ Route::post('/admComprobarProductosPorMesa/{token}/{idMesa}', [CarritoController
 Route::get('/admObtenerListadoProducto/{token}', [ProductoController::class, 'admObtenerListadoProducto']);
 
 Route::get('/admOcultarProducto/{token}/{idProducto}', [ProductoController::class, 'admOcultarProducto']);
+
+Route::post('/admEditarProducto/{token}/{idProducto}', [ProductoController::class, 'admEditarProducto']);

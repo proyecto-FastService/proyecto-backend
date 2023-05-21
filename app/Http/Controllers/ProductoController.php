@@ -43,7 +43,7 @@ class ProductoController extends Controller
         return response()->json(['error' => 'Token no válido'], 400);
     }
 
-    public function admEditarProducto(Request $request, $id, $token)
+    public function admEditarProducto(Request $request, $token, $id )
     {
         $mesa = Mesa::find(0);
 
