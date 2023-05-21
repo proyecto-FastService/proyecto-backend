@@ -77,7 +77,7 @@ class CarritoController extends Controller
         $mesa = Mesa::find(0);
         $mesaCliente = Mesa::find($idMesa);
 
-        if ($mesa && $mesa->token === $token) {
+        if ($mesa->codigo === $token) {
             // El administrador comprueba los productos que tiene pedidos una mesa
 
             // Obtener los productos pedidos de la mesa cliente
