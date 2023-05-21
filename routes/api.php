@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\CarritoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::get('/mesa/prueba', 'MesaController@prueba');
 Route::get('/cargar-productos/{id}/{token?}', [MesaController::class, 'cargarProductosConStock']);
 
-Route::get('/pedirListaProductos/{token}/{arrayProductosIds}', [CarritoController::class, 'pedirListaProductosPorId']);
+Route::post('/pedirListaProductosPorId/{token}', [CarritoController::class, 'pedirListaProductosPorId']);
+
