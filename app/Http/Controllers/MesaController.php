@@ -32,7 +32,29 @@ class MesaController extends Controller
             $productosEnStock = $productoController->obtenerTodosProductosConStock();
             return $productosEnStock;
         } else {
-            return false;
+            return "false";
+        }
+    }
+
+    public function admObtenerToken($id, $token = null)
+    {
+        if (Mesa::comprobarMesaOcupada($id)) {
+            Mesa::ocuparMesaPorId($id);
+            $codigo = $id . Str::random(100);
+            Mesa::codificarMesa($id, $codigo);
+            // Creamos una instancia del controlador "ProductoController"
+            $productoController = new ProductoController;
+            // Llamamos a la función "mostrarProductos" del controlador "ProductoController"
+            $productosEnStock = $productoController->obtenerTodosProductosConStock();
+            return ['token' => $codigo, 'productosEnStock' => $productosEnStock];
+        } else if (Mesa::comprobarMesaOcupadaPorToken($id, $token)) {
+            // Creamos una instancia del controlador "ProductoController"
+            $productoController = new ProductoController;
+            // Llamamos a la función "mostrarProductos" del controlador "ProductoController"
+            $productosEnStock = $productoController->obtenerTodosProductosConStock();
+            return $productosEnStock;
+        } else {
+            return "false";
         }
     }
 

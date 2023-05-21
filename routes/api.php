@@ -30,3 +30,9 @@ Route::get('/devolverProductosPedidosNoPagados/{token}', [CarritoController::cla
 
 Route::get('/admObtenerTodasMesas/{token}', [MesaController::class, 'admObtenerTodasMesas']);
 
+Route::get('/admObtenerToken/{id}/{token?}', [MesaController::class, 'admObtenerToken']);
+
+Route::get('/admComprobarProductosPorMesa/{token}/{idMesa}', [CarritoController::class, 'admComprobarProductosPorMesa']);
+
+
+

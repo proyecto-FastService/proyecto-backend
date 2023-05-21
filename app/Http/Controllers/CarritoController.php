@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\MesaController;
 use App\Models\Mesa;
 use App\Models\Producto;
+
 class CarritoController extends Controller
 {
     public function pedirListaProductosPorId($token, Request $request)
@@ -71,21 +72,33 @@ class CarritoController extends Controller
     }
 
 
-    public function admComprobarProductosPorMesa($token)
+    public function admComprobarProductosPorMesa($token, $idMesa)
     {
-        // El administrador comprueba los productos que tiene pedidos una mesa
-        // y la cantidad de dinero que es
+        $mesa = Mesa::find(0);
+        $mesaCliente = Mesa::find($idMesa);
 
-        // Código de ejemplo:
-        $productosPedidos = Carrito::where('id_mesa', $idMesa)->get();
-        $totalDinero = 0;
+        if ($mesa && $mesa->token === $token) {
+            // El administrador comprueba los productos que tiene pedidos una mesa
 
-        foreach ($productosPedidos as $producto) {
-            // Calcular el total de dinero sumando los precios de los productos pedidos
-            $totalDinero += $producto->precio;
+            // Obtener los productos pedidos de la mesa cliente
+            $productosPedidos = Carrito::where('token_mesa', $mesaCliente->token)->get();
+
+            // Arreglo para almacenar los detalles de los productos
+            $productos = [];
+
+            foreach ($productosPedidos as $producto) {
+                // Agregar los detalles de cada producto al arreglo
+                $productos[] = [
+                    'id' => $producto->id,
+                    'nombre' => $producto->nombre,
+                    'precio' => $producto->precio,
+                ];
+            }
+
+            // Retornar el arreglo de productos en formato JSON
+            return response()->json(['productos' => $productos]);
         }
 
-        // Retornar la cantidad de dinero total en formato JSON
-        return response()->json(['totalDinero' => $totalDinero]);
+        return response()->json(['error' => 'Token no válido'], 400);
     }
 }
