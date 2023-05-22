@@ -119,6 +119,6 @@ class MesaController extends Controller
     public function llamarCamarero($idMesa)
     {
         // recogemos el id de la mesa y le mandamos a la mesa camarero una llamada
-
+        return response()->json(['message' => 'Camarero solicitado en la mesa '.$idMesa]);
     }
 }

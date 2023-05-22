@@ -14,9 +14,40 @@ class ProductoController extends Controller
         return Producto::obtenerTodosProductosEnStock();
     }
 
-    public function admAddProducto()
+    public function admAddProducto(Request $request, $token, $id)
     {
         // el administrador añade un producto entero por lo que nos deben pasar todos los detalles del producto, crear el objeto y meterlo en la base de datos
+        $mesa = Mesa::find(0);
+
+        if ($mesa->codigo === $token) {
+            // Validar los datos recibidos desde React si es necesario
+            $request->validate([
+                'nombre' => 'required',
+                'existencias' => 'required|numeric',
+                'alergenos' => 'required',
+                'precios' => 'required|numeric',
+                'descripcion' => 'required',
+                'ingredientes' => 'required',
+                'imagen' => 'required'
+            ]);
+
+            // Crear los atributos del producto según los datos recibidos desde React
+            $producto = new Producto();
+            $producto->nombre = $request->input('nombre');
+            $producto->existencias = $request->input('existencias');
+            $producto->alergenos = $request->input('alergenos');
+            $producto->precios = $request->input('precios');
+            $producto->descripcion = $request->input('descripcion');
+            $producto->ingredientes = $request->input('ingredientes');
+            $producto->imagen = $request->input('imagen');
+
+            // Guardar los cambios en la base de datos
+            $producto->save();
+
+            // Retornar una respuesta adecuada
+            return response()->json(['message' => 'Producto creado correctamente']);
+        }
+        return response()->json(['error' => 'Token no válido'], 400);
     }
 
     public function admOcultarProducto($token, $idProducto)
@@ -28,14 +59,14 @@ class ProductoController extends Controller
         if ($mesa->codigo === $token) {
             if ($mesa->codigo === $token) {
                 $producto = Producto::find($idProducto);
-        
+
                 if ($producto) {
                     $producto->existencias = 0;
                     $producto->save();
-        
+
                     return response()->json(['message' => 'Producto ocultado correctamente']);
                 }
-        
+
                 return response()->json(['error' => 'Producto no encontrado'], 404);
             }
         }
@@ -43,13 +74,21 @@ class ProductoController extends Controller
         return response()->json(['error' => 'Token no válido'], 400);
     }
 
-    public function admEditarProducto(Request $request, $token, $id )
+    public function admEditarProducto(Request $request, $token, $id)
     {
         $mesa = Mesa::find(0);
 
         if ($mesa->codigo === $token) {
             // Validar los datos recibidos desde React si es necesario
-            // ...
+            $request->validate([
+                'nombre' => 'required',
+                'existencias' => 'required|numeric',
+                'alergenos' => 'required',
+                'precios' => 'required|numeric',
+                'descripcion' => 'required',
+                'ingredientes' => 'required',
+                'imagen' => 'required'
+            ]);
 
             // Buscar el producto por su ID
             $producto = Producto::find($id);
