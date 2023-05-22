@@ -33,6 +33,8 @@ Route::get('/admObtenerTodasMesas/{token}', [MesaController::class, 'admObtenerT
 
 Route::get('/admObtenerToken/{id}/{token?}', [MesaController::class, 'admObtenerToken']);
 
+Route::get('/llamarCamarero/{id}', [MesaController::class, 'llamarCamarero']);
+
 
 
 Route::post('/admLiberarMesa/{token}/{idMesa}', [MesaController::class, 'admLiberarMesa']);
@@ -48,3 +50,5 @@ Route::get('/admObtenerListadoProducto/{token}', [ProductoController::class, 'ad
 Route::get('/admOcultarProducto/{token}/{idProducto}', [ProductoController::class, 'admOcultarProducto']);
 
 Route::post('/admEditarProducto/{token}/{idProducto}', [ProductoController::class, 'admEditarProducto']);
+
+Route::post('/admAddProducto/{token}/{idProducto}', [ProductoController::class, 'admAddProducto']);
