@@ -51,4 +51,4 @@ Route::get('/admOcultarProducto/{token}/{idProducto}', [ProductoController::clas
 
 Route::post('/admEditarProducto/{token}/{idProducto}', [ProductoController::class, 'admEditarProducto']);
 
-Route::post('/admAddProducto/{token}/{idProducto}', [ProductoController::class, 'admAddProducto']);
+Route::post('/admAddProducto/{token}', [ProductoController::class, 'admAddProducto']);

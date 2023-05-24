@@ -14,7 +14,7 @@ class ProductoController extends Controller
         return Producto::obtenerTodosProductosEnStock();
     }
 
-    public function admAddProducto(Request $request, $token, $id)
+    public function admAddProducto(Request $request, $token)
     {
         // el administrador añade un producto entero por lo que nos deben pasar todos los detalles del producto, crear el objeto y meterlo en la base de datos
         $mesa = Mesa::find(0);
@@ -28,6 +28,7 @@ class ProductoController extends Controller
                 'precio' => 'required|numeric',
                 'descripcion' => 'required',
                 'ingredientes' => 'required',
+                'imagen' => 'required'
             ]);
 
             // Crear los atributos del producto según los datos recibidos desde React
@@ -38,6 +39,17 @@ class ProductoController extends Controller
             $producto->precio = $request->input('precio');
             $producto->descripcion = $request->input('descripcion');
             $producto->ingredientes = $request->input('ingredientes');
+
+            if ($request->hasFile('imagen')) {
+                $imagen = $request->file('imagen');
+                $nombreImagen = time().'.'.$imagen->getClientOriginalExtension();
+        
+                // Guardar la imagen en la carpeta deseada
+                $imagen->storeAs('img', $nombreImagen, 'public');
+        
+                // Asignar el nombre de la imagen al atributo correspondiente del producto
+                $producto->imagen = $nombreImagen;
+            }
 
             // Guardar los cambios en la base de datos
             $producto->save();
@@ -84,7 +96,7 @@ class ProductoController extends Controller
                 'alergenos' => 'required',
                 'precio' => 'required|numeric',
                 'descripcion' => 'required',
-                'ingredientes' => 'required',
+                'ingredientes' => 'required'
             ]);
 
             // Buscar el producto por su ID
@@ -102,7 +114,6 @@ class ProductoController extends Controller
             $producto->precio = $request->input('precio');
             $producto->descripcion = $request->input('descripcion');
             $producto->ingredientes = $request->input('ingredientes');
-            $producto->imagen = $request->input('imagen');
 
             // Guardar los cambios en la base de datos
             $producto->save();
