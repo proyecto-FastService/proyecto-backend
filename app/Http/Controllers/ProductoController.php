@@ -25,10 +25,9 @@ class ProductoController extends Controller
                 'nombre' => 'required',
                 'existencias' => 'required|numeric',
                 'alergenos' => 'required',
-                'precios' => 'required|numeric',
+                'precio' => 'required|numeric',
                 'descripcion' => 'required',
                 'ingredientes' => 'required',
-                'imagen' => 'required'
             ]);
 
             // Crear los atributos del producto según los datos recibidos desde React
@@ -36,10 +35,9 @@ class ProductoController extends Controller
             $producto->nombre = $request->input('nombre');
             $producto->existencias = $request->input('existencias');
             $producto->alergenos = $request->input('alergenos');
-            $producto->precios = $request->input('precios');
+            $producto->precio = $request->input('precio');
             $producto->descripcion = $request->input('descripcion');
             $producto->ingredientes = $request->input('ingredientes');
-            $producto->imagen = $request->input('imagen');
 
             // Guardar los cambios en la base de datos
             $producto->save();
@@ -84,10 +82,9 @@ class ProductoController extends Controller
                 'nombre' => 'required',
                 'existencias' => 'required|numeric',
                 'alergenos' => 'required',
-                'precios' => 'required|numeric',
+                'precio' => 'required|numeric',
                 'descripcion' => 'required',
                 'ingredientes' => 'required',
-                'imagen' => 'required'
             ]);
 
             // Buscar el producto por su ID
@@ -102,7 +99,7 @@ class ProductoController extends Controller
             $producto->nombre = $request->input('nombre');
             $producto->existencias = $request->input('existencias');
             $producto->alergenos = $request->input('alergenos');
-            $producto->precios = $request->input('precios');
+            $producto->precio = $request->input('precio');
             $producto->descripcion = $request->input('descripcion');
             $producto->ingredientes = $request->input('ingredientes');
             $producto->imagen = $request->input('imagen');

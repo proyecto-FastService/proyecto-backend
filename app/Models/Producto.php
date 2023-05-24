@@ -18,7 +18,7 @@ class Producto extends Model
         'nombre',
         'existencias',
         'alergenos',
-        'precios',
+        'precio',
         'descripcion',
         'ingredientes',
         'imagen',
