@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->string('ingredientes');
             $table->string('imagen');
+            $table->string('categoria');
             $table->timestamps();
         });
     }

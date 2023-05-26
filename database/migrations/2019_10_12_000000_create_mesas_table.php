@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('role')->nullable();
             $table->boolean('ocupada')->default(false);
+            $table->boolean('avisoCamarero')->default(false);
             $table->string('codigo', 255)->nullable();
             $table->timestamps();
         });
