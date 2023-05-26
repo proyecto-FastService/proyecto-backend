@@ -15,6 +15,6 @@ class MesaSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        Mesa::factory()->count(5)->create();
+        Mesa::factory()->count(4)->create();
     }
 }
