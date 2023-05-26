@@ -22,6 +22,7 @@ class Mesa extends Authenticatable
     protected $fillable = [
         'ocupada',
         'codigo',
+        'avisoCamarero',
     ];
 
     public function producto(){

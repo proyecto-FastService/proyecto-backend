@@ -116,9 +116,44 @@ class MesaController extends Controller
         return response()->json(['error' => 'Token no válido'], 400);
     }
 
-    public function llamarCamarero($idMesa)
+
+
+    public function llamarCamarero($token)
     {
-        // recogemos el id de la mesa y le mandamos a la mesa camarero una llamada
-        return response()->json(['message' => 'Camarero solicitado en la mesa '.$idMesa]);
+        // Buscar la mesa por el token en el campo 'codigo'
+        $mesa = Mesa::where('codigo', $token)->first();
+
+        // Verificar si se encontró la mesa
+        if ($mesa) {
+            // Actualizar la columna 'avisoCamarero' a true
+            $mesa->avisoCamarero = true;
+            $mesa->save();
+
+            // La actualización se ha realizado correctamente
+            // Puedes agregar aquí cualquier otra lógica que desees ejecutar después de llamar al camarero
+            return response()->json(['message' => 'Se ha llamado al camarero con éxito'], 200);
+        } else {
+            // No se encontró ninguna mesa con el token proporcionado
+            return response()->json(['message' => 'No se encontró la mesa'], 404);
+        }
+    }
+
+    public function mesaAtendida($token){
+        // Buscar la mesa por el token en el campo 'codigo'
+        $mesa = Mesa::where('codigo', $token)->first();
+
+        // Verificar si se encontró la mesa
+        if ($mesa) {
+            // Actualizar la columna 'avisoCamarero' a true
+            $mesa->avisoCamarero = false;
+            $mesa->save();
+
+            // La actualización se ha realizado correctamente
+            // Puedes agregar aquí cualquier otra lógica que desees ejecutar después de llamar al camarero
+            return response()->json(['message' => 'Se ha atendido con exito'], 200);
+        } else {
+            // No se encontró ninguna mesa con el token proporcionado
+            return response()->json(['message' => 'No se encontró la mesa'], 404);
+        }
     }
 }
