@@ -13,6 +13,6 @@ class CarritoSeeder extends Seeder
      */
     public function run()
     {
-        Carrito::factory()->count(5)->create();
+
     }
 }
