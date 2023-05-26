@@ -116,7 +116,9 @@ class CarritoController extends Controller
             }
 
             // Retornar el arreglo de productos en formato JSON
-            return response()->json(['productos' => $productos]);
+            return response()->json(['productos' => $productos,
+                'estadoMesa' => $mesaCliente->ocupada
+            ]);
         }
 
         return response()->json(['error' => 'Token no válido'], 400);
