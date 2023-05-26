@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -62,3 +63,5 @@ Route::get('/admOcultarProducto/{token}/{idProducto}', [ProductoController::clas
 Route::post('/admEditarProducto/{token}/{idProducto}', [ProductoController::class, 'admEditarProducto']);
 
 Route::post('/admAddProducto/{token}', [ProductoController::class, 'admAddProducto']);
+
+Route::get('/envioCorreo/{token}/{email}', [MailController::class, 'enviarCorreo']);
