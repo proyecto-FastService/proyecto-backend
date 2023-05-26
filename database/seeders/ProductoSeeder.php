@@ -130,7 +130,7 @@ class ProductoSeeder extends Seeder
             'precio' => 15,
             'descripcion' => 'Presumida tarta de chocolate recién castigada por los dioses del cacao.',
             'ingredientes' => 'vacío',
-            'imagen' => 'La-Tía-Juana-Oración-al-Viento-819x1024.jpg',
+            'imagen' => 'La-Tía-Juana-Oración-al-Viento-819x1024.jpeg',
             'categoria' => 'postre',
         ]);
 
@@ -141,7 +141,7 @@ class ProductoSeeder extends Seeder
             'precio' => 15,
             'descripcion' => 'Engordable tarta de queso con mermelada de frutos del bosque, bien presentada para deglutirla sin temor al pecado.',
             'ingredientes' => 'vacío',
-            'imagen' => 'La-Tía-Juana-Virgen-de-Guadalupe-819x1024.jpg',
+            'imagen' => 'La-Tía-Juana-Virgen-de-Guadalupe-819x1024.jpeg',
             'categoria' => 'postre',
         ]);
 
