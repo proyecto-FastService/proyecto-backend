@@ -62,7 +62,7 @@ class ProductoSeeder extends Seeder
             'existencias' => 200,
             'alergenos' => 'Huevos, Mostaza, Altramuz, Gluten',
             'precio' => 15,
-            'descripcion' => 'Pornográficas fajitas de POLLO DE GRANJA, CERDITO DE ALTA GAMA o CHAMPI (Pueden ser también mixtas), sobre un petulante guisado de verduras salteadas y horneadas a la mexicana con toques de aceite de trufa. Acompañado de 6 tortillas mal portadas para taquear.',
+            'descripcion' => '"Fajitas de POLLO DE GRANJA, CERDITO DE ALTA GAMA o CHAMPI (mixtas también), con guisado de verduras salteadas y horneadas a la mexicana con aceite de trufa. Acompañadas de 6 tortillas para taquear.',
             'ingredientes' => 'vacío',
             'imagen' => 'El-traidor-fajitas',
             'categoria' => 'plato',
