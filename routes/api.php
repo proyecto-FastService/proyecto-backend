@@ -42,7 +42,7 @@ Route::get('/cargar-productos/{id}/{token?}', [MesaController::class, 'cargarPro
 
 // FUNCIONALIDADES CLIENTE
 
-Route::get('/llamarCamarero/{id}', [MesaController::class, 'llamarCamarero']);
+Route::get('/llamarCamarero/{token}', [MesaController::class, 'llamarCamarero']);
 
 // MESA ADMIN
 
@@ -53,6 +53,8 @@ Route::post('/admComprobarProductosPorMesa/{token}/{idMesa}', [CarritoController
 Route::post('/admLiberarMesa/{token}/{idMesa}', [MesaController::class, 'admLiberarMesa']);
 
 Route::post('/admReservarMesa/{token}/{idMesa}', [MesaController::class, 'admReservarMesa']);
+
+Route::get('/mesaAtendida/{token}', [MesaController::class, 'mesaAtendida']);
 
 // PRODUCTO ADMIN
 

@@ -92,13 +92,13 @@
             @foreach($productos as $producto)
             <div class="item">
                 <div class="name">{{ $producto->nombre }}</div>
-                <div class="price">${{ $producto->precio }}</div>
+                <div class="price">{{ $producto->precio }}€</div>
             </div>
             @endforeach
         </div>
         
         <div class="total">
-            Total: ${{ $total }}
+            Total: {{ $total }}€
         </div>
         
         <div class="contact-info">
