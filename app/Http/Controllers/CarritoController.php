@@ -17,7 +17,6 @@ class CarritoController extends Controller
         if ($jsonData && isset($jsonData['cartItems']) && is_array($jsonData['cartItems'])) {
             $cartItems = $jsonData['cartItems'];
             $mesa = $jsonData['token'];
-
             foreach ($cartItems as $cartItem) {
                 $idProducto = $cartItem['id'];
 
@@ -32,8 +31,8 @@ class CarritoController extends Controller
                 $producto->save();
             }
 
-            // Resto del código...
-
+            $enviarPedidoCocinaController = new MailController();
+            $enviarPedidoCocinaController->enviarPedidoCocina($cartItems, $mesa);
             // Retornar una respuesta adecuada
             return response()->json(['productos' => $jsonData]);
         } else {
