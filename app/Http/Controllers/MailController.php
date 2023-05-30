@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\CorreoFastService;
 use App\Mail\CorreoCocina;
+use App\Mail\CorreoFactura;
 use App\Mail\NombreDelCorreo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +16,7 @@ use Illuminate\Support\Collection;
 class MailController extends Controller
 {
 
-    public function enviarCorreo($token, $email)
+    public function enviarCorreo($token, $email, $nombreEmpresa = null, $cif = null)
     {
         $productosCarrito = Carrito::where('token_mesa', $token)->pluck('id_producto')->toArray();
 
@@ -24,9 +25,13 @@ class MailController extends Controller
 
         // Calcula el total sumando los precios de los productos
         $total = $productos->sum('precio');
-
-        $correo = new CorreoFastService($productos, $total);
-        Mail::to($email)->send($correo);
+        if ($nombreEmpresa != null) {
+            $correo = new CorreoFactura($productos, $total, $nombreEmpresa, $cif);
+            Mail::to($email)->send($correo);
+        } else {
+            $correo = new CorreoFastService($productos, $total);
+            Mail::to($email)->send($correo);
+        }
     }
 
     public function enviarPedidoCocina($productos, $tokenMesa)

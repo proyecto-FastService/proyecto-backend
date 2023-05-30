@@ -66,4 +66,4 @@ Route::post('/admEditarProducto/{token}/{idProducto}', [ProductoController::clas
 
 Route::post('/admAddProducto/{token}', [ProductoController::class, 'admAddProducto']);
 
-Route::get('/envioCorreo/{token}/{email}', [MailController::class, 'enviarCorreo']);
+Route::get('/envioCorreo/{token}/{email}/{nombreEmpresa?}/{cif?}', [MailController::class, 'enviarCorreo']);
